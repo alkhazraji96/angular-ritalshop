@@ -1,0 +1,21 @@
+.jumbotron {
+  background: rgb(236, 236, 236);
+  background: radial-gradient(circle, rgba(236, 236, 236, 1) 0%, rgba(250, 250, 247, 1) 100%);
+  position: relative;
+  h1 {
+    font-family: "Almarai", sans-serif;
+    font-size: 5vw;
+    margin-top: 10%;
+  }
+  h2 {
+    font-family: "Almarai", sans-serif;
+    font-size: 3vw;
+  }
+}
+img {
+  position: absolute;
+  max-height: 105%;
+  width: 36%;
+  top: 3%;
+  left: 5%;
+}
