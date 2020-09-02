@@ -1,0 +1,16 @@
+<div class="shadow-sm p-4">
+  <div class="d-flex justify-content-between">
+    <p>{{purchase_price | number}} IQ</p>
+    <h3>تكلفة المشتريات</h3>
+  </div>
+  <div class="d-flex justify-content-between">
+    <p>{{transport_price | number}} IQ</p>
+    <h3>تكلفة الشحن <span class="text-muted">({{city}})</span></h3>
+  </div>
+  <hr>
+  <div class="d-flex justify-content-between">
+    <p>{{purchase_price + transport_price | number}} IQ</p>
+    <h2>المبلغ الكلي</h2>
+  </div>
+  <button class="btn btn-outline-secondary btn-block" (click)="onBillSubmit($event)">ارسال الطلب</button>
+</div>

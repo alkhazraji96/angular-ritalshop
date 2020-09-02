@@ -1,0 +1,28 @@
+<div class="container">
+  <h1 class="text-right p-2 bg-light"><span
+      class="material-icons-outlined inline-block align-bottom mr-2">fact_check</span>مواصفات المنتج</h1>
+  <div class="row shadow mx-0 px-0 py-3">
+    <div class="col-md-6">
+      <img class="img-fluid" src="{{productList.image}}">
+    </div>
+    <div class="col-md-6">
+      <h5 class="text-right" dir="rtl">فرن فرن</h5>
+      <ul class="text-right bar p-2" dir="rtl">
+        <li>فرن كهربائي فرن كهربائي</li>
+        <li>فرن كهربائي فرن كهربائي</li>
+        <li>فرن كهربائي فرن كهربائي</li>
+      </ul>
+      <div class="d-flex justify-content-between">
+        <div>
+          <button *ngIf="!cartToggle[productList.id]" class="btn btn-success" (click)="onAddClick()"><span
+              class="material-icons-outlined d-inline-block align-bottom" id="cart-icon">add_shopping_cart</span> اضف
+            للعربة</button>
+          <button *ngIf="cartToggle[productList.id]" class="btn btn-danger" (click)="onRemoveClick()"><span
+              class="material-icons-outlined d-inline-block align-bottom" id="cart-icon">remove_shopping_cart</span>
+            ازالة من العربة</button>
+        </div>
+        <h2 class="bg-price text-right mt-2">{{productList.price | number}} IQ</h2>
+      </div>
+    </div>
+  </div>
+</div>

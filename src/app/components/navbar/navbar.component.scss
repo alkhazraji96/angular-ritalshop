@@ -1,9 +1,21 @@
-.navbar-brand {
-  font-family: "Cairo", sans-serif;
-  font-weight: 300;
-  font-size: 25px;
-  span {
-    font-weight: 700;
-    color: red;
-  }
+.material-icons-outlined {
+  font-size: 2rem;
+  color: red;
+}
+
+#cart-space {
+  position: relative;
+}
+#cart-icon {
+  margin-top: 15%;
+}
+
+#badgeicon {
+  position: absolute;
+  right: 4%;
+}
+
+.navbar-brand span {
+  color: red;
+  font-weight: bold;
 }

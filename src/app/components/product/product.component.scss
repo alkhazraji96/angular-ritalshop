@@ -1,0 +1,43 @@
+h1 {
+  font-family: "Almarai";
+  font-weight: 700;
+  font-size: 2rem;
+  color: #423f42;
+}
+.material-icons-outlined {
+  font-size: 2.5rem;
+  color: red;
+}
+
+.bar {
+  list-style: none;
+}
+.bar > li {
+  position: relative;
+  font-family: "Cairo";
+}
+.bar > li:before {
+  content: "\25CF";
+  color: #696969;
+  padding-left: 0.5rem;
+}
+
+.bg-price {
+  color: red;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.5rem;
+}
+h5 {
+  font-family: "Almarai";
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #423f42;
+}
+
+#cart-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+button {
+  font-family: "Cairo";
+}

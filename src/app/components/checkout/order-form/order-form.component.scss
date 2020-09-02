@@ -1,0 +1,20 @@
+label {
+  font-family: "Cairo";
+}
+
+.dropdown-menu {
+  min-width: 0px;
+  max-width: 135%;
+  font-family: 'Cairo';
+  max-height: 400%;
+  font-size: 85%;
+}
+.btn-default {
+  font-family: 'Cairo';
+}
+
+.dropdown-menu-center {
+  left: 40% !important;
+  right: auto !important;
+  transform: translate(-50%, 0) !important;
+}

@@ -1,0 +1,36 @@
+<form dir="rtl" class="shadow-sm mb-2 p-3" [formGroup]="orderForm">
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label class="float-right">الاسم</label>
+      <input type="text" class="form-control" formControlName="name"
+        [ngClass]="{'is-invalid': orderForm.get('name').invalid && orderForm.get('name').touched}">
+      <div class="invalid-feedback text-right"> يرجى تزويدنا باسم المشتري</div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="float-right">رقم الهاتف</label>
+      <input type="tel" class="form-control" formControlName="tel"
+        [ngClass]="{'is-invalid': orderForm.get('tel').invalid && orderForm.get('tel').touched}">
+      <div class="invalid-feedback text-right">يرجى كتابة 11 رقم هاتف</div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label class="text-right w-100">المحافظة</label>
+      <div class="btn-group float-right" dropdown>
+        <button dropdownToggle type="button" class="btn btn-default bg-light dropdown-toggle">
+          {{selectedCity}} <span class="caret"></span>
+        </button>
+        <ul *dropdownMenu class="dropdown-menu dropdown-menu-center text-right bg-light pre-scrollable" role="menu">
+          <li role="menuitem"><a class="dropdown-item" *ngFor="let city of cities"
+              (click)="onCityClick(city)">{{city}}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="float-right">العنوان</label>
+      <input type="text" class="form-control is-invalid" formControlName="address"
+        [ngClass]="{'is-invalid': orderForm.get('address').invalid && orderForm.get('address').touched}">
+      <div class="invalid-feedback text-right"> يرجى تزويدنا بعنوان التوصيل </div>
+    </div>
+  </div>
+</form>

@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "ritalshopV2"
+  "defaultProject": "ritalshopV2",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

@@ -1,0 +1,38 @@
+h1 {
+  font-family: "Almarai";
+  font-weight: 400;
+  font-size: 1.9rem;
+}
+
+h3 {
+  font-family: "Cairo";
+  font-size: 1.4rem;
+}
+h2 {
+  font-family: "Almarai";
+  font-size: 1.7rem;
+}
+
+hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+p {
+  font-family: "Josefin Sans";
+  color: #ff0300;
+  font-size: 1.3rem;
+}
+
+.material-icons-outlined {
+  font-size: 2.3rem;
+  color: #ff0300;
+}
+.text-muted {
+  font-size: 80%;
+}
+button {
+  font-family: 'Cairo';
+  color: black;
+}

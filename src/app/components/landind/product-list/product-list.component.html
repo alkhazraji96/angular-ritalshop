@@ -1,11 +1,17 @@
 <div class="container">
   <div class="row no-gutters">
-    <div class="col-md-4 col-sm-6" *ngFor="let m of n">
+    <div class="col-md-4 col-sm-6" *ngFor="let product of productList">
       <div class="card border-0 text-center my-2">
-        <img src="../../../../assets/unnam3ed.png" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">مايكرويف</h5>
-          <p class="price-bg">18,000 IQ</p>
+        <img src="{{product.image}}" class="card-img-top" (click)="onImageClick(product)">
+        <a class="shadow-sm">
+          <span class="material-icons-outlined p-1" [ngClass]="cartToggle[product.id] ? 'd-none': 'd-inline-block align-bottom'"
+            (click)="onAddClick(product)">add_shopping_cart</span>
+          <span class="material-icons-outlined p-1" [ngClass]="cartToggle[product.id] ? 'd-inline-block align-bottom': 'd-none'"
+            (click)="onRemoveClick(product)">remove_shopping_cart</span>
+        </a>
+        <div class="card-body bg-light d-flex justify-content-center">
+          <p class="price-bg mr-3">{{product.price | number}} IQ</p>
+          <h5 class="card-title">{{product.name}}</h5>
         </div>
       </div>
     </div>
