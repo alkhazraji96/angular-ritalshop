@@ -12,16 +12,11 @@ import { OrderSubmitService } from 'src/app/services/offline/order-submit.servic
 export class OrderFormComponent implements OnInit {
   cities: string[] = cities
   selectedCity: string = 'النجف'
-  orderForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
-    tel: ['', [Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
-    address: ['', Validators.required],
-    city: [this.selectedCity]
-  })
+  orderForm: FormGroup = this.orderFormFunc()
   constructor(private cityService: CityService, private fb: FormBuilder, private orderSubmitService: OrderSubmitService) { }
 
   ngOnInit(): void {
-    this.orderSubmitService.mouseEvent$.subscribe(() => this.onOrederSubmit())
+    this.orderSubmitService.orderSubmit$.subscribe(() => this.onOrederSubmit())
   }
   onCityClick(city: string) {
     this.selectedCity = city
@@ -29,5 +24,13 @@ export class OrderFormComponent implements OnInit {
   }
   onOrederSubmit() {
     console.log(this.orderForm.value);
+  }
+  orderFormFunc(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      tel: ['', [Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
+      address: ['', Validators.required],
+      city: [this.selectedCity]
+    })
   }
 }

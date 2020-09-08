@@ -5,10 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderSubmitService {
-  mouseEvent: MouseEvent = undefined
-  mouseEvent$ = new Subject<MouseEvent>()
-  setMouseEvent(mouseEvent: MouseEvent) {
-    this.mouseEvent$.next(mouseEvent)
+  orderSubmit$ = new Subject<MouseEvent>()
+  setOrderSubmit(orderSubmit: MouseEvent) {
+    this.orderSubmit$.next(orderSubmit)
   }
   constructor() { }
 }

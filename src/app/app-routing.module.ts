@@ -7,7 +7,8 @@ import { ProductComponent } from './components/product/product.component';
 const routes: Routes = [
   { path: '', component: LandindComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'product/:id', component: ProductComponent }
+  { path: 'product/:id', component: ProductComponent },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row no-gutters">
     <div class="col-md-4 col-sm-6" *ngFor="let product of productList">
-      <div class="card border-0 text-center my-2">
+      <div class="card border-0 text-center m-1">
         <img src="{{product.image}}" class="card-img-top" (click)="onImageClick(product)">
         <a class="shadow-sm">
           <span class="material-icons-outlined p-1" [ngClass]="cartToggle[product.id] ? 'd-none': 'd-inline-block align-bottom'"

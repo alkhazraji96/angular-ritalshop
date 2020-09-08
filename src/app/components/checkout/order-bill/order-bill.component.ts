@@ -27,7 +27,7 @@ export class OrderBillComponent implements OnInit {
       this.purchase_price = data.reduce((result, content) => result + content.qty * content.price, 0)
     })
   }
-  onBillSubmit(event: MouseEvent) {
-    this.orderSubmitService.setMouseEvent(event)
+  onBillSubmit(e: MouseEvent) {
+    this.orderSubmitService.setOrderSubmit(e)
   }
 }

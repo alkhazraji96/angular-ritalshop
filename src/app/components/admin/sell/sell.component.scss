@@ -1,0 +1,22 @@
+.dropdown-menu {
+  max-width: 135%;
+  font-family: 'Cairo';
+  max-height: 400%;
+  font-size: 85%;
+  min-width: 5.5rem;
+}
+.btn-default {
+  font-family: 'Cairo';
+  min-width: 5rem;
+}
+h1 {
+  font-family: "Almarai";
+  font-weight: 700;
+  font-size: 2rem;
+  color: #423f42;
+}
+.dropdown-menu-center {
+  left: 40% !important;
+  right: auto !important;
+  transform: translate(-50%, 0) !important;
+}
