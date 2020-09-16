@@ -1,1 +1,30 @@
-<p>expense works!</p>
+<div class="container">
+  <h1 class="text-right w-100 mb-2 bg-light p-2">اضافة مصاريف</h1>
+  <form class="shadow-sm p-4 mt-2" [formGroup]="expenseForm">
+    <div class="form-row justify-content-end">
+      <div class="col-md-6 mb-3">
+        <label class="float-right">التفاصيل</label>
+        <input type="text" class="form-control" formControlName="details"
+          [ngClass]="{'is-invalid': expenseForm.get('details').invalid && expenseForm.get('details').touched}">
+        <div class="invalid-feedback text-right"> مطلوب التفاصيل</div>
+      </div>
+    </div>
+    <div class="form-row justify-content-end">
+      <div class="col-md-6 mb-3">
+        <label class="float-right">المبلغ</label>
+        <input type="tel" class="form-control" formControlName="price"
+          [ngClass]="{'is-invalid': expenseForm.get('price').invalid && expenseForm.get('price').touched}">
+        <div class="invalid-feedback text-right">مطلوب المبلغ</div>
+      </div>
+    </div>
+    <div class="form-row justify-content-end">
+      <div class="col-md-6">
+        <div class="d-flex">
+          <div *ngIf="loading" class="loader mr-2"></div>
+          <button class="btn btn-outline-secondary mb-0" (click)="onSubmit()"
+            [disabled]="expenseForm.invalid || loading">اضافة</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

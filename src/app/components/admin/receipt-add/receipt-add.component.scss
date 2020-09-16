@@ -1,10 +1,55 @@
-.btn-default {
-  font-family: 'Cairo';
-  min-width: 5rem;
-}
 h1 {
   font-family: "Almarai";
   font-weight: 700;
   font-size: 2rem;
   color: #423f42;
+}
+
+label {
+  font-family: "Cairo";
+}
+
+.btn-outline-secondary {
+  color: #000;
+  font-family: "Cairo";
+}
+
+.form-control:focus,
+.btn-outline-secondary:focus {
+  color: #000;
+  border-color: #000;
+  -webkit-box-shadow: 3px 3px 16px -1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 3px 3px 16px -1px rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 3px 16px -1px rgba(0, 0, 0, 0.25);
+}
+input {
+  direction: rtl;
+}
+
+.loader {
+  border: 0.25rem solid #dae0e5;
+  border-radius: 50%;
+  border-top: 0.25rem solid #777;
+  width: 2.5rem;
+  height: 2.5rem;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

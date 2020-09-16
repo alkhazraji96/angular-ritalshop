@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.toast-title, .toast-message{
+ float: right !important;
+ margin-right: 0.3rem;
+ font-family: 'Cairo' !important;
+}

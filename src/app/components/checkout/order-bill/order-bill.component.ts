@@ -24,7 +24,7 @@ export class OrderBillComponent implements OnInit {
       return this.transport_price = 7000
     })
     this.store.select(selectProducts).subscribe(data => {
-      this.purchase_price = data.reduce((result, content) => result + content.qty * content.price, 0)
+      this.purchase_price = data.reduce((result, content) => result + content.qty * content.client_price, 0)
     })
   }
   onBillSubmit(e: MouseEvent) {

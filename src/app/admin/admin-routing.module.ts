@@ -15,6 +15,7 @@ import { HomeStatComponent } from '../components/admin/statistical/home-stat/hom
 import { SellStatComponent } from '../components/admin/statistical/sell-stat/sell-stat.component';
 import { ReceiptStatComponent } from '../components/admin/statistical/receipt-stat/receipt-stat.component';
 import { ReceiptAddComponent } from '../components/admin/receipt-add/receipt-add.component';
+import { LoginComponent } from '../components/admin/login/login.component';
 
 const routes: Routes = [{
   path: '', component: AdminComponent, children: [
@@ -24,6 +25,7 @@ const routes: Routes = [{
     { path: 'add-shipment', component: ShipmentComponent },
     { path: 'add-sell', component: SellComponent },
     { path: 'profit', component: ProfitAddComponent },
+    { path: 'login', component: LoginComponent },
     { path: 'add-expense', component: ExpenseComponent },
     { path: 'add-receipt', component: ReceiptAddComponent },
     {

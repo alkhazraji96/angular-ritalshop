@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { addProduct, deleteProduct } from 'src/app/store/product.actions';
 import { Router } from '@angular/router';
 import { selectProducts } from 'src/app/store/product.selectors';
+import { ProductService } from 'src/app/services/online/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -13,31 +14,49 @@ import { selectProducts } from 'src/app/store/product.selectors';
 })
 export class ProductListComponent implements OnInit {
   cartToggle = {};
-  productList: Product[] = [
-    { id: '1', name: 'اوتي', image: '../../../../assets/unnam3ed.png', price: 12000, description: [{ desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }], qty: 1 },
-    { id: '2', name: 'خلاط', image: '../../../../assets/unnam3ed.png', price: 12000, description: [{ desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }], qty: 1 },
-    { id: '3', name: 'براد', image: '../../../../assets/unnam3ed.png', price: 12000, description: [{ desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }], qty: 1 },
-    { id: '4', name: 'طباخ', image: '../../../../assets/unnam3ed.png', price: 12000, description: [{ desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }], qty: 1 },
-    { id: '5', name: 'غسالة', image: '../../../../assets/unnam3ed.png', price: 12000, description: [{ desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }], qty: 1 },
-    { id: '6', name: 'مجففة', image: '../../../../assets/unnam3ed.png', price: 12000, description: [{ desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }], qty: 1 },
-    { id: '7', name: 'فرن', image: '../../../../assets/unnam3ed.png', price: 12000, description: [{ desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }], qty: 1 },
-  ]
+  productList: Product[] = [];
+  totalPages: number = 0;
+  hasNextPage: boolean = false;
+  hasPrevPage: boolean = false;
+  page: number = 1
 
-  constructor(private store: Store<ProductState>, private router: Router) { }
+  constructor(
+    private store: Store<ProductState>,
+    private router: Router,
+    private productService: ProductService
+  ) { }
 
   ngOnInit(): void {
+    this.productService.getProducts(1).subscribe(r => {
+      this.totalPages = r.totalPages;
+      this.productList = r.docs;
+      this.hasNextPage = r.hasNextPage
+      this.hasPrevPage = r.hasPrevPage
+      this.page = r.page
+    })
     this.store.select(selectProducts).subscribe(product => {
-      this.cartToggle = Object.assign({}, ...(product.map(product => ({ [product.id]: true }))))
+      this.cartToggle = Object.assign({}, ...(product.map(product => ({ [product._id]: true }))))
     })
   }
   onAddClick(product: Product) {
-    this.store.dispatch(addProduct({ product: product }))
+    const productWithQty = Object.assign({}, product)
+    productWithQty.qty = 1;
+    this.store.dispatch(addProduct({ product: productWithQty }))
   }
   onRemoveClick(product: Product) {
-    this.store.dispatch(deleteProduct({ id: product.id }))
+    this.store.dispatch(deleteProduct({ id: product._id }))
   }
   onImageClick(product: Product) {
-    this.router.navigateByUrl('product/' + product.id)
+    this.router.navigateByUrl('product/' + product._id)
+  }
+  onPageChanged(i: number) {
+    this.productService.getProducts(i).subscribe(r => {
+      this.totalPages = r.totalPages;
+      this.productList = r.docs;
+      this.hasNextPage = r.hasNextPage
+      this.hasPrevPage = r.hasPrevPage
+      this.page = r.page
+    })
   }
 
 }

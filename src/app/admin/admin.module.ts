@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from '../components/admin/admin.component';
@@ -17,6 +18,8 @@ import { HomeStatComponent } from '../components/admin/statistical/home-stat/hom
 import { SellStatComponent } from '../components/admin/statistical/sell-stat/sell-stat.component';
 import { ReceiptStatComponent } from '../components/admin/statistical/receipt-stat/receipt-stat.component';
 import { ReceiptAddComponent } from '../components/admin/receipt-add/receipt-add.component';
+import { LoginComponent } from '../components/admin/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -31,14 +34,16 @@ import { ReceiptAddComponent } from '../components/admin/receipt-add/receipt-add
     ExpenseStatComponent,
     ProfitStatComponent,
     HomeStatComponent,
+    LoginComponent,
     SellStatComponent,
     ReceiptStatComponent,
     ReceiptAddComponent
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     AdminRoutingModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
   ]
 })
 export class AdminModule { }

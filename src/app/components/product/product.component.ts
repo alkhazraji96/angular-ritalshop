@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { addProduct, deleteProduct } from 'src/app/store/product.actions';
 import { selectProducts } from 'src/app/store/product.selectors';
 import { ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/services/online/product.service';
 
 @Component({
   templateUrl: './product.component.html',
@@ -11,19 +12,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
   cartToggle = {};
-  productList: Product =
-    { id: this.activatedRoute.snapshot.params.id, name: 'اوتي', image: '../assets/unnam3ed.png', price: 12000, description: [{ desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }, { desc: 'فرن اصلي ضمان سنة' }], qty: 1 }
+  product: Product = {} as any
 
-
-  constructor(private store: Store<Product[]>, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private store: Store<Product[]>,
+    private activatedRoute: ActivatedRoute,
+    private productService: ProductService
+  ) { }
 
   ngOnInit(): void {
+    this.productService.getSelectedProduct(this.activatedRoute.snapshot.params.id).subscribe(r => this.product = r)
     this.store.pipe(select(selectProducts)).subscribe(product => {
-      this.cartToggle = Object.assign({}, ...(product.map(product => ({ [product.id]: true }))))
+      this.cartToggle = Object.assign({}, ...(product.map(product => ({ [product._id]: true }))))
     })
   }
   onAddClick() {
-    this.store.dispatch(addProduct({ product: this.productList }))
+    const productWithQty = Object.assign({}, this.product)
+    productWithQty.qty = 1;
+    this.store.dispatch(addProduct({ product: productWithQty }))
   }
   onRemoveClick() {
     this.store.dispatch(deleteProduct({ id: this.activatedRoute.snapshot.params.id }))

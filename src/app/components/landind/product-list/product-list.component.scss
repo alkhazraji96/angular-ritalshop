@@ -3,7 +3,6 @@
   font-family: "Josefin Sans", sans-serif;
   font-size: 1.1rem;
 }
-
 .card-title {
   font-family: "Almarai", sans-serif;
   color: #444444;
@@ -17,9 +16,24 @@
   border-radius: 50%;
   color: red;
   padding: 1%;
+  background-color: #fff;
   border: 1px solid rgba(252, 0, 0, 0.2);
 }
-
 .card a:hover {
   cursor: pointer;
+}
+
+.pagination {
+  font-family: "Almarai", sans-serif;
+  font-weight: 300;
+  a {
+    color: black;
+    box-shadow: none !important;
+  outline: 0px !important;
+  }
+}
+.page-item.active .page-link {
+  background-color: red;
+  border: none;
+  color: #f8f9fa;
 }

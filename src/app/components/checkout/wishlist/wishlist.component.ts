@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { selectProducts } from 'src/app/store/product.selectors';
 import { Update } from '@ngrx/entity';
 import { updateProduct, deleteProduct } from 'src/app/store/product.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wishlist',
@@ -12,26 +13,27 @@ import { updateProduct, deleteProduct } from 'src/app/store/product.actions';
   styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent implements OnInit {
-  product$: Observable<Product[]>
-  constructor(private store: Store<Product[]>) { }
+  product: Product[]
+  constructor(private store: Store<Product[]>, private router: Router) { }
 
   ngOnInit(): void {
-    this.product$ = this.store.select(selectProducts)
+    this.store.select(selectProducts).subscribe(p => this.product = p)
   }
   onAddQty(product: Product) {
     this.increment(product)
   }
   onRemoveQty(product: Product) {
-    this.decrement(product)
+    this.decrement(product)    
   }
   onRemoveBtn(product: Product) {
-    this.store.dispatch(deleteProduct({ id: product.id }))
+    this.store.dispatch(deleteProduct({ id: product._id }))
+    if(this.product.length == 0) {return this.router.navigateByUrl('')}
   }
   increment(product: Product) {
     const updatedProduct: Product = Object.assign({}, product)
     updatedProduct.qty = updatedProduct.qty < 9 ? updatedProduct.qty = updatedProduct.qty + 1 : updatedProduct.qty;
     const update: Update<Product> = {
-      id: product.id,
+      id: product._id,
       changes: updatedProduct
     }
     this.store.dispatch(updateProduct({ product: update }))
@@ -40,7 +42,7 @@ export class WishlistComponent implements OnInit {
     const updatedProduct: Product = Object.assign({}, product)
     updatedProduct.qty = updatedProduct.qty > 1 ? updatedProduct.qty = updatedProduct.qty - 1 : updatedProduct.qty;
     const update: Update<Product> = {
-      id: product.id,
+      id: product._id,
       changes: updatedProduct
     }
     this.store.dispatch(updateProduct({ product: update }))

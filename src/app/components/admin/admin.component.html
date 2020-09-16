@@ -1,13 +1,13 @@
 <router-outlet></router-outlet>
 <div [ngClass]="isCollapsed ? 'mySidenav' : ''" class="sidenav bg-light border-right text-right">
   <div class="sidebar-heading">الادارة</div>
-  <div class="list-group list-group-flush">
-    <a routerLink="/admin/dashboard" (click)="isCollapsed = !isCollapsed" class="list-group-item border-0 list-group-item-action bg-light">لوحة التحكم</a>
-    <a routerLink="/admin/add-product" (click)="isCollapsed = !isCollapsed" class="list-group-item list-group-item-action bg-light">اضافة منتج</a>
-    <a routerLink="/admin/add-shipment" (click)="isCollapsed = !isCollapsed" class="list-group-item list-group-item-action bg-light">اضافة شحنة</a>
-    <a routerLink="/admin/add-sell" (click)="isCollapsed = !isCollapsed" class="list-group-item list-group-item-action bg-light">بيع منتج</a>
-    <a routerLink="/admin/profit" (click)="isCollapsed = !isCollapsed" class="list-group-item list-group-item-action bg-light">اضافة ارباح</a>
-    <a routerLink="/admin/add-expense" (click)="isCollapsed = !isCollapsed" class="list-group-item list-group-item-action bg-light">اضافة مصاريف</a>
-    <a routerLink="/admin/add-receipt" (click)="isCollapsed = !isCollapsed" class="list-group-item list-group-item-action bg-light">اضافة فواتير</a>
-    <a routerLink="/admin/statistical" (click)="isCollapsed = !isCollapsed" class="list-group-item list-group-item-action bg-light">الاحصائيات</a>
+  <div class="list-group list-group-flush" (click)="isCollapsed = !isCollapsed">
+    <a routerLink="/admin/dashboard" class="list-group-item border-0 list-group-item-action bg-light">لوحة التحكم</a>
+    <a routerLink="/admin/add-product" class="list-group-item list-group-item-action bg-light">اضافة منتج</a>
+    <a routerLink="/admin/add-shipment" class="list-group-item list-group-item-action bg-light">اضافة شحنة</a>
+    <a routerLink="/admin/add-sell" class="list-group-item list-group-item-action bg-light">بيع منتج</a>
+    <a routerLink="/admin/profit" class="list-group-item list-group-item-action bg-light">اضافة ارباح</a>
+    <a routerLink="/admin/add-expense" class="list-group-item list-group-item-action bg-light">اضافة مصاريف</a>
+    <a routerLink="/admin/add-receipt" class="list-group-item list-group-item-action bg-light">اضافة فواتير</a>
+    <a routerLink="/admin/statistical" class="list-group-item list-group-item-action bg-light">الاحصائيات</a>
   </div>

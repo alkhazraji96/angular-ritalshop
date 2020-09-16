@@ -2,18 +2,31 @@
   <div class="row no-gutters">
     <div class="col-md-4 col-sm-6" *ngFor="let product of productList">
       <div class="card border-0 text-center m-1">
-        <img src="{{product.image}}" class="card-img-top" (click)="onImageClick(product)">
+        <div class="embed-responsive embed-responsive-1by1">
+          <img src="{{product.imageURL}}" class="card-img-top embed-responsive-item" (click)="onImageClick(product)">
+        </div>
         <a class="shadow-sm">
-          <span class="material-icons-outlined p-1" [ngClass]="cartToggle[product.id] ? 'd-none': 'd-inline-block align-bottom'"
+          <span class="material-icons-outlined p-1"
+            [ngClass]="cartToggle[product._id] ? 'd-none': 'd-inline-block align-bottom'"
             (click)="onAddClick(product)">add_shopping_cart</span>
-          <span class="material-icons-outlined p-1" [ngClass]="cartToggle[product.id] ? 'd-inline-block align-bottom': 'd-none'"
+          <span class="material-icons-outlined p-1"
+            [ngClass]="cartToggle[product._id] ? 'd-inline-block align-bottom': 'd-none'"
             (click)="onRemoveClick(product)">remove_shopping_cart</span>
         </a>
         <div class="card-body bg-light d-flex justify-content-center">
-          <p class="price-bg mr-3">{{product.price | number}} IQ</p>
-          <h5 class="card-title">{{product.name}}</h5>
+          <p class="price-bg mr-3">{{product.client_price | number}} IQ</p>
+          <h5 class="card-title">{{product.type}}</h5>
         </div>
       </div>
     </div>
   </div>
+  <nav>
+    <ul class="pagination justify-content-center mt-3">
+      <li class="page-item" [ngClass]="!hasPrevPage ? 'disabled' : ''" ><a class="page-link" routerLink (click)="onPageChanged(page - 1)">السابق</a></li>
+      <li class="page-item" *ngFor="let p of [].constructor(totalPages); let i=index;"
+        [ngClass]="page == i+1? 'active': ''"><a class="page-link" routerLink (click)="onPageChanged(i+1)">{{i + 1}}</a>
+      </li>
+      <li class="page-item" [ngClass]="!hasNextPage ? 'disabled' : ''"><a class="page-link" routerLink (click)="onPageChanged(page + 1)">التالي</a></li>
+    </ul>
+  </nav>
 </div>

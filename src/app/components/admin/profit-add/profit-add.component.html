@@ -1,30 +1,37 @@
 <div class="container">
-  <h1 class="text-right w-100 mb-2 bg-light p-2">بيع المنتج</h1>
-  <form dir="rtl" class="shadow-sm p-4 mt-2">
-    <div class="form-row">
+  <h1 class="text-right w-100 mb-2 bg-light p-2">اضافة ربح صافي</h1>
+  <form class="shadow-sm p-4 mt-2" [formGroup]="profitForm">
+    <div class="form-row justify-content-end">
       <div class="col-md-6 mb-3">
-        <label class="float-right">تفاصيل</label>
-        <input type="tel" class="form-control" formControlName="client_price">
-        <div class="invalid-feedback text-right"> مطلوب سعر البيع</div>
+        <label class="float-right">التفاصيل</label>
+        <input type="text" class="form-control" formControlName="details"
+          [ngClass]="{'is-invalid': profitForm.get('details').invalid && profitForm.get('details').touched}">
+        <div class="invalid-feedback text-right"> مطلوب التفاصيل</div>
       </div>
     </div>
-    <div class="form-row">
+    <div class="form-row justify-content-end">
       <div class="col-md-6 mb-3">
         <label class="float-right">العدد</label>
-        <input type="text" class="form-control" formControlName="type">
+        <input type="tel" class="form-control" formControlName="qty"
+          [ngClass]="{'is-invalid': profitForm.get('qty').invalid && profitForm.get('qty').touched}">
         <div class="invalid-feedback text-right"> مطلوب العدد</div>
       </div>
     </div>
-    <div class="form-row">
+    <div class="form-row justify-content-end">
       <div class="col-md-6 mb-3">
-        <label class="float-right">ربح القطعة الواحدة</label>
-        <input type="tel" class="form-control" formControlName="client_price">
-        <div class="invalid-feedback text-right"> مطلوب سعر البيع</div>
+        <label class="float-right">الربح</label>
+        <input type="tel" class="form-control" formControlName="price"
+          [ngClass]="{'is-invalid': profitForm.get('price').invalid && profitForm.get('price').touched}">
+        <div class="invalid-feedback text-right">مطلوب الربح</div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6 mt-3">
-        <button class="btn btn-outline-secondary mt-3 mb-0">اضافة</button>
+    <div class="form-row justify-content-end">
+      <div class="col-md-6">
+        <div class="d-flex">
+          <div *ngIf="loading" class="loader mr-2"></div>
+          <button class="btn btn-outline-secondary mb-0" (click)="onSubmit()"
+            [disabled]="profitForm.invalid || loading">اضافة</button>
+        </div>
       </div>
     </div>
   </form>

@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -17,7 +20,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderFormComponent } from './components/checkout/order-form/order-form.component';
 import { OrderBillComponent } from './components/checkout/order-bill/order-bill.component';
 import { ProductComponent } from './components/product/product.component';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { WishlistComponent } from './components/checkout/wishlist/wishlist.component';
 
@@ -35,11 +37,13 @@ import { WishlistComponent } from './components/checkout/wishlist/wishlist.compo
     WishlistComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     CollapseModule,
     ReactiveFormsModule,
+    HttpClientModule,
     BsDropdownModule.forRoot(),
+    ToastrModule.forRoot({ closeButton: true }),
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature(fromProduct.productsFeatureKey, fromProduct.reducer),

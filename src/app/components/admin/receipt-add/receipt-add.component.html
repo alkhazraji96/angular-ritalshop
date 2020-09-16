@@ -1,23 +1,29 @@
 <div class="container">
-  <h1 class="text-right w-100 mb-2 bg-light p-2">بيع المنتج</h1>
-  <form dir="rtl" class="shadow-sm p-4 mt-2">
-    <div class="form-row">
+  <h1 class="text-right w-100 mb-2 bg-light p-2">اضافة قائمة شراء</h1>
+  <form class="shadow-sm p-4 mt-2" [formGroup]="receiptForm">
+    <div class="form-row justify-content-end">
       <div class="col-md-6 mb-3">
-        <label class="float-right">تفاصيل القائمة</label>
-        <input type="text" class="form-control" formControlName="client_price">
-        <div class="invalid-feedback text-right"> مطلوب تفاصيل القائمة</div>
+        <label class="float-right">القائمة</label>
+        <input type="text" class="form-control" formControlName="receipt"
+          [ngClass]="{'is-invalid': receiptForm.get('receipt').invalid && receiptForm.get('receipt').touched}">
+        <div class="invalid-feedback text-right"> مطلوب القائمة</div>
       </div>
     </div>
-    <div class="form-row">
+    <div class="form-row justify-content-end">
       <div class="col-md-6 mb-3">
         <label class="float-right">المبلغ</label>
-        <input type="tel" class="form-control" formControlName="type">
-        <div class="invalid-feedback text-right"> مطلوب المبلغ</div>
+        <input type="tel" class="form-control" formControlName="price"
+          [ngClass]="{'is-invalid': receiptForm.get('price').invalid && receiptForm.get('price').touched}">
+        <div class="invalid-feedback text-right">مطلوب المبلغ</div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6 mt-3">
-        <button class="btn btn-outline-secondary mt-3 mb-0">اضافة</button>
+    <div class="form-row justify-content-end">
+      <div class="col-md-6">
+        <div class="d-flex">
+          <div *ngIf="loading" class="loader mr-2"></div>
+          <button class="btn btn-outline-secondary mb-0" (click)="onSubmit()"
+            [disabled]="receiptForm.invalid || loading">اضافة</button>
+        </div>
       </div>
     </div>
   </form>

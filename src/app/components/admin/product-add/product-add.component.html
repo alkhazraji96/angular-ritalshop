@@ -1,30 +1,50 @@
 <div class="container">
   <h1 class="text-right w-100 mb-2 bg-light p-2">اضافة منتج</h1>
-  <form dir="rtl" class="shadow-sm p-4 mt-2">
-    <div class="form-row">
+  <form class="shadow-sm p-4 mt-2" [formGroup]="addProductForm">
+    <div class="form-row justify-content-end">
       <div class="col-md-6 mb-3">
         <label class="float-right">نوع المنتج</label>
-        <input type="text" class="form-control" formControlName="type">
+        <input type="text" class="form-control" formControlName="type"
+          [ngClass]="{'is-invalid': addProductForm.get('type').invalid && addProductForm.get('type').touched}">
         <div class="invalid-feedback text-right"> مطلوب نوع المنتج</div>
       </div>
     </div>
-    <div class="form-row">
+    <div class="form-row justify-content-end">
       <div class="col-md-6 mb-3">
         <label class="float-right">سعر البيع</label>
-        <input type="tel" class="form-control" formControlName="client_price">
+        <input type="tel" class="form-control" formControlName="client_price"
+          [ngClass]="{'is-invalid': addProductForm.get('client_price').invalid && addProductForm.get('client_price').touched}">
         <div class="invalid-feedback text-right"> مطلوب سعر البيع</div>
       </div>
     </div>
-    <label class="d-flex text-right"><a class="material-icons inline-block align-bottom ml-2"
-        (click)="addDescBtn()"> add </a> الوصف</label>
-    <div class="form-row" formArrayName="description">
+    <div class="form-row justify-content-end">
       <div class="col-md-6 mb-3">
-        <div class="d-flex mt-2" *ngFor="let desc of p.controls; let i=index">
-          <a class="material-icons ml-2 h-50 mt-1" (click)="removeDescBtn(i)"> remove </a>
-          <input type="tel" class="form-control w-75" formControlName="client_price">
+        <div class="d-flex justify-content-end">
+          <span *ngIf="selectedFile" class="img-select material-icons mr-3"> check </span>
+          <input class="d-none form-control is-invalid" type="file" (change)="onFileChange($event)" id="img"
+            accept="image/*" />
+          <label class="btn btn-outline-secondary mt-3" for="img">اضف صورة</label>
         </div>
-        <div class="invalid-feedback text-right"> مطلوب تفاصيل المنتج</div>
-        <button class="btn btn-outline-secondary mt-3 mb-0">اضافة</button>
+      </div>
+    </div>
+    <label class="d-flex justify-content-end text-right">الوصف <a class="material-icons inline-block align-bottom ml-2"
+        (click)="addDescBtn()">
+        add </a></label>
+    <div class="form-row d-flex justify-content-end">
+      <div class="col-md-6 mb-3">
+        <div *ngFor="let description of p.controls; let i=index" [formGroup]="description">
+          <div class="d-flex justify-content-end mt-2">
+            <input type="text" class="form-control w-75" formControlName="desc"
+              [ngClass]="{'is-invalid': description.get('desc').invalid && description.get('desc').touched}">
+            <a class="material-icons ml-2 h-50 mt-1" (click)="removeDescBtn(i)"> remove </a>
+          </div>
+          <h5 *ngIf="description.get('desc').invalid && description.get('desc').touched" class="text-right"> مطلوب سعر
+            البيع</h5>
+        </div>
+        <div class="d-flex">
+          <div *ngIf="loading" class="loader mt-3 mr-2"></div>
+          <button class="btn btn-outline-secondary mt-3 mb-0" (click)="onSubmit()" [disabled]="addProductForm.invalid || loading || !selectedFile">اضافة</button>
+        </div>
       </div>
     </div>
   </form>

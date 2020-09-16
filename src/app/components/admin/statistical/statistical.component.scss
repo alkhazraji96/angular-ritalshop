@@ -7,7 +7,9 @@
 .tabbable .nav-tabs .nav-link {
   white-space: nowrap;
 }
-
+.active-bg {
+  background-color: #F8F9FA;
+}
 // scroll style
 .tabbable:hover {
   ::-webkit-scrollbar-thumb {
