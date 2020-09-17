@@ -4,9 +4,9 @@ import { StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
 
+import { extModules } from './build-specifics';
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
@@ -21,7 +21,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderFormComponent } from './components/checkout/order-form/order-form.component';
 import { OrderBillComponent } from './components/checkout/order-bill/order-bill.component';
 import { ProductComponent } from './components/product/product.component';
-import { environment } from '../environments/environment';
 import { WishlistComponent } from './components/checkout/wishlist/wishlist.component';
 import { AuthService } from './services/online/auth.service';
 import { NgxWebstorageModule } from 'ngx-webstorage';
@@ -68,7 +67,7 @@ export function jwtOptionsFactory(authService: AuthService) {
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature(fromProduct.productsFeatureKey, fromProduct.reducer),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    extModules
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
