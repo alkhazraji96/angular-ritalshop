@@ -5,6 +5,7 @@ import { addProduct, deleteProduct } from 'src/app/store/product.actions';
 import { selectProducts } from 'src/app/store/product.selectors';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/online/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: './product.component.html',
@@ -18,7 +19,8 @@ export class ProductComponent implements OnInit {
     private store: Store<Product[]>,
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -34,8 +36,10 @@ export class ProductComponent implements OnInit {
     const productWithQty = Object.assign({}, this.product)
     productWithQty.qty = 1;
     this.store.dispatch(addProduct({ product: productWithQty }))
+    this.toastrService.success('', 'تم اضافة عنصر للعربة')
   }
   onRemoveClick() {
     this.store.dispatch(deleteProduct({ id: this.activatedRoute.snapshot.params.id }))
+    this.toastrService.warning('', 'تم ازالة عنصر من العربة')
   }
 }

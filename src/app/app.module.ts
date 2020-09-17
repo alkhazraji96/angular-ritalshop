@@ -64,7 +64,7 @@ export function jwtOptionsFactory(authService: AuthService) {
     }),
     BsDropdownModule.forRoot(),
     NgxWebstorageModule.forRoot(),
-    ToastrModule.forRoot({ closeButton: true }),
+    ToastrModule.forRoot({ closeButton: true, preventDuplicates: true }),
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature(fromProduct.productsFeatureKey, fromProduct.reducer),
