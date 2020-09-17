@@ -7,6 +7,6 @@
     <span id="cart-icon" class="material-icons-outlined">shopping_cart</span>
     <span id="badgeicon" class="badge badge-dark">{{cartLength}}</span>
   </div>
-  <button *ngIf="adminActive" class="btn btn-light ml-2" (click)="onSideNavToggle($event)"><span
+  <button *ngIf="adminActive && currentAdmin" class="btn btn-light ml-2" (click)="onSideNavToggle($event)"><span
       class="navbar-toggler-icon"></span></button>
 </nav>
