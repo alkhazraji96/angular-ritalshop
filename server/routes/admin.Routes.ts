@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import { Request, Response, Express } from 'express'
 import * as multer from 'multer';
 import * as cloudinary from 'cloudinary';
@@ -21,7 +24,7 @@ export function AdminRoute(server: Express): void {
       const type = await Product.findOne({ type: req.body.product.type })
       if (type) { return res.json({ msg: '!هذه النوع موجود بالفعل' }) }
       if (req.file) {
-        let result = await cloudinary.v2.uploader.upload(req.file.path, { folder: 'test' })
+        let result = await cloudinary.v2.uploader.upload(req.file.path, { folder: process.env.PRODUCTDIRECTORY })
         req.body.product.imageId = result.public_id
         req.body.product.imageURL = result.secure_url
       }
