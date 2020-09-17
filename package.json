@@ -1,23 +1,16 @@
 {
   "name": "ritalshop-v2",
   "version": "0.0.0",
-  "engines": {
-    "node": "14.11.0",
-    "npm": "6.14.7"
-  },
   "scripts": {
-    "start:heroku": "node /dist/ritalshopV2/server",
-    "heroku-postbuild": "npm run build:ssr",
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run serve:ssr",
+    "build": "npm build:ssr",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev:ssr": "ng run ritalshopV2:serve-ssr --host 192.168.0.117",
     "serve:ssr": "node dist/ritalshopV2/server/main.js",
-    "build:ssr": "ng build --prod && ng run ritalshopV2:server:production && npm run webpack:server",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
+    "build:ssr": "ng build --prod && ng run ritalshopV2:server:production",
     "prerender": "ng run ritalshopV2:prerender"
   },
   "private": true,
