@@ -46,14 +46,14 @@ export class ProductAddComponent implements OnInit {
   }
   onSubmit() {
     this.loading = true;
-    if (!this.selectedFile) {return this.loading = false;}
+    if (!this.selectedFile) { return this.loading = false; }
     const formData = new FormData()
     formData.append('imageId', this.selectedFile, this.selectedFile.name)
     formData.append('product', JSON.stringify(this.addProductForm.value))
     this.adminService.postProduct(formData).subscribe(r => {
-      if (!r.success) { return this.toastrService.error(r.msg, 'فشل') }
-      this.toastrService.success('', 'تم اضافة منتج')
+      if (!r.success) { this.loading = false; return this.toastrService.error(r.msg, 'فشل') }
       this.loading = false;
+      this.toastrService.success('', 'تم اضافة منتج')
     })
   }
 

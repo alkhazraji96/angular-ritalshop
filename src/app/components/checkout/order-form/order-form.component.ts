@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { cities } from '../../../models/city.model';
+import { Component, OnInit } from '@angular/core';
+import { cities } from 'src/app/models/city.model';
 import { CityService } from 'src/app/services/offline/city.service';
 import { ProductService } from 'src/app/services/online/product.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -44,10 +44,10 @@ export class OrderFormComponent implements OnInit {
     const order = { form: this.orderForm.value, cart: this.cartProduct }
     this.orderService.postOrder(order).subscribe(r => {
       if (r.success) {
-         this.toastrService.success('', 'تم ارسال الطلب');
-         this.store.dispatch(clearProducts())
-         return this.router.navigateByUrl('') 
-        }
+        this.toastrService.success('', 'تم ارسال الطلب');
+        this.store.dispatch(clearProducts())
+        return this.router.navigateByUrl('')
+      }
     })
   }
   orderFormFunc(): FormGroup {

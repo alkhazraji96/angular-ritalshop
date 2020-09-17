@@ -1,10 +1,11 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import { User } from '../model/user.model';
+
 import { Strategy as localStrategy } from 'passport-local';
 import { Strategy as jwtStrategy } from 'passport-jwt';
 import { ExtractJwt } from 'passport-jwt';
 import { compare } from 'bcryptjs'
+import { User } from '../model/user.model';
 
 export const registerStrategy = new localStrategy(async (username, password, done) => {
   try {

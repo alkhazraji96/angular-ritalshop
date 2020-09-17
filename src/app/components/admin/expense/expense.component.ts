@@ -8,8 +8,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./expense.component.scss']
 })
 export class ExpenseComponent implements OnInit {
+
   loading: boolean = false
   expenseForm: FormGroup = this.expenseFormFunc()
+
   constructor(
     private adminService: AdminService,
     private fb: FormBuilder,
@@ -25,8 +27,10 @@ export class ExpenseComponent implements OnInit {
     })
   }
   onSubmit() {
+    this.loading = true;
     this.adminService.postExpense(this.expenseForm.value).subscribe(r => {
-      if (!r.success) { this.toastrService.error('', 'فشل اضافة مصاريف') }
+      if (!r.success) { this.loading = false; return this.toastrService.error('', 'فشل اضافة مصاريف') }
+      this.loading = false;
       this.toastrService.success('', 'تم اضافة مصاريف')
     })
   }

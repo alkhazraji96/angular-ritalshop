@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
 
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
@@ -22,6 +23,18 @@ import { OrderBillComponent } from './components/checkout/order-bill/order-bill.
 import { ProductComponent } from './components/product/product.component';
 import { environment } from '../environments/environment';
 import { WishlistComponent } from './components/checkout/wishlist/wishlist.component';
+import { AuthService } from './services/online/auth.service';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+
+export function jwtOptionsFactory(authService: AuthService) {
+  return {
+    tokenGetter: () => {
+      return authService.getAsyncToken();
+    },
+    allowedDomains: ["192.168.0.117:4200"],
+    authScheme: "JWT "
+  }
+}
 
 @NgModule({
   declarations: [
@@ -42,14 +55,22 @@ import { WishlistComponent } from './components/checkout/wishlist/wishlist.compo
     CollapseModule,
     ReactiveFormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [AuthService]
+      }
+    }),
     BsDropdownModule.forRoot(),
+    NgxWebstorageModule.forRoot(),
     ToastrModule.forRoot({ closeButton: true }),
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature(fromProduct.productsFeatureKey, fromProduct.reducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

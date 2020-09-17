@@ -26,8 +26,10 @@ export class ProfitAddComponent implements OnInit {
     })
   }
   onSubmit() {
+    this.loading = true;
     this.adminService.postProfit(this.profitForm.value).subscribe(r => {
-      if (!r.success) { this.toastrService.error('', 'فشل اضافة ارباح') }
+      if (!r.success) { this.loading = false; return this.toastrService.error('', 'فشل اضافة ارباح') }
+      this.loading = false;
       this.toastrService.success('', 'تم اضافة ارباح')
     })
   }

@@ -34,8 +34,10 @@ export class SellComponent implements OnInit {
     this.sellForm.get('typeId').setValue(id)
   }
   onSubmit() {
+    this.loading = true;
     this.adminService.postSell(this.sellForm.value).subscribe(r => {
-      if (!r.success) { this.toastrService.error('', 'فشل اضافة بيع') }
+      if (!r.success) { this.loading = false; return this.toastrService.error('', 'فشل اضافة بيع') }
+      this.loading = false;
       this.toastrService.success('', 'تم اضافة بيع')
     })
   }

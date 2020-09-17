@@ -25,8 +25,10 @@ export class ReceiptAddComponent implements OnInit {
     })
   }
   onSubmit() {
+    this.loading = true;
     this.adminService.postReceipt(this.receiptForm.value).subscribe(r => {
-      if (!r.success) { this.toastrService.error('', 'فشل اضافة قائمة') }
+      if (!r.success) { this.loading = false; return this.toastrService.error('', 'فشل اضافة قائمة') }
+      this.loading = false;
       this.toastrService.success('', 'تم اضافة قائمة')
     })
   }

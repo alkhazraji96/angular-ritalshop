@@ -34,8 +34,10 @@ export class ShipmentComponent implements OnInit {
     this.shipmentForm.get('typeId').setValue(id)
   }
   onSubmit() {
+    this.loading = true;
     this.adminService.postShipment(this.shipmentForm.value).subscribe(r => {
-      if (!r.success) { this.toastrService.error('', 'فشل اضافة شحنة') }
+      if (!r.success) { this.loading = false; return this.toastrService.error('', 'فشل اضافة شحنة') }
+      this.loading = false;
       this.toastrService.success('', 'تم اضافة شحنة')
     })
   }

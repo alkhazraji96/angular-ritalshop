@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StatisticalService } from 'src/app/services/online/statistical.service';
-import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './receipt-stat.component.html',

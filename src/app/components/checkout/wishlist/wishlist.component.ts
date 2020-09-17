@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { selectProducts } from 'src/app/store/product.selectors';
 import { Update } from '@ngrx/entity';
 import { updateProduct, deleteProduct } from 'src/app/store/product.actions';

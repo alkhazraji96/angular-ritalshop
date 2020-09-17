@@ -1,16 +1,12 @@
 <nav class="navbar navbar-expand navbar-light bg-white">
   <a class="navbar-brand" routerLink="/">Rital <span>SHOP</span></a>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a class="nav-link" routerLink>Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/admin">admin</a>
-    </li>
+    <li class="nav-item"><a *ngIf="currentAdmin" class="nav-link" routerLink="/admin">{{currentAdmin.username}}</a></li>
   </ul>
   <div id="cart-space" (click)="onCartClick()">
     <span id="cart-icon" class="material-icons-outlined">shopping_cart</span>
     <span id="badgeicon" class="badge badge-dark">{{cartLength}}</span>
   </div>
-  <button *ngIf="adminActive" class="btn btn-light ml-2" (click)="onSideNavToggle($event)"><span class="navbar-toggler-icon"></span></button>
+  <button *ngIf="adminActive" class="btn btn-light ml-2" (click)="onSideNavToggle($event)"><span
+      class="navbar-toggler-icon"></span></button>
 </nav>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Product } from 'src/app/models/product.model';
 
 const devURL = 'http://192.168.0.117:4200'
 

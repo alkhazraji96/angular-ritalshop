@@ -16,9 +16,10 @@ import { SellStatComponent } from '../components/admin/statistical/sell-stat/sel
 import { ReceiptStatComponent } from '../components/admin/statistical/receipt-stat/receipt-stat.component';
 import { ReceiptAddComponent } from '../components/admin/receipt-add/receipt-add.component';
 import { LoginComponent } from '../components/admin/login/login.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [{
-  path: '', component: AdminComponent, children: [
+  path: '', component: AdminComponent, canActivateChild: [AuthGuard], children: [
     { path: '', redirectTo: 'dashboard' },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'add-product', component: ProductAddComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [{
     { path: 'add-expense', component: ExpenseComponent },
     { path: 'add-receipt', component: ReceiptAddComponent },
     {
-      path: 'statistical', component: StatisticalComponent, children: [
+      path: 'statistical', component: StatisticalComponent,
+      children: [
         { path: '', redirectTo: 'home-stat' },
         { path: 'expense-stat', component: ExpenseStatComponent },
         { path: 'profit-stat', component: ProfitStatComponent },

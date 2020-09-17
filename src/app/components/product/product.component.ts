@@ -3,7 +3,7 @@ import { Product } from 'src/app/models/product.model';
 import { Store, select } from '@ngrx/store';
 import { addProduct, deleteProduct } from 'src/app/store/product.actions';
 import { selectProducts } from 'src/app/store/product.selectors';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/online/product.service';
 
 @Component({
@@ -17,11 +17,15 @@ export class ProductComponent implements OnInit {
   constructor(
     private store: Store<Product[]>,
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.productService.getSelectedProduct(this.activatedRoute.snapshot.params.id).subscribe(r => this.product = r)
+    this.productService.getSelectedProduct(this.activatedRoute.snapshot.params.id).subscribe(r => {
+      if (r.err) { return this.router.navigateByUrl('') }
+      this.product = r
+    })
     this.store.pipe(select(selectProducts)).subscribe(product => {
       this.cartToggle = Object.assign({}, ...(product.map(product => ({ [product._id]: true }))))
     })

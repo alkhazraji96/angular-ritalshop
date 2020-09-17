@@ -20,7 +20,6 @@ import { ReceiptStatComponent } from '../components/admin/statistical/receipt-st
 import { ReceiptAddComponent } from '../components/admin/receipt-add/receipt-add.component';
 import { LoginComponent } from '../components/admin/login/login.component';
 
-
 @NgModule({
   declarations: [
     AdminComponent,
@@ -44,6 +43,6 @@ import { LoginComponent } from '../components/admin/login/login.component';
     CommonModule,
     AdminRoutingModule,
     BsDropdownModule.forRoot(),
-  ]
+  ],
 })
 export class AdminModule { }

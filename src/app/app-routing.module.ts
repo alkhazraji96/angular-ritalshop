@@ -9,13 +9,14 @@ const routes: Routes = [
   { path: '', component: LandindComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [CartGuard] },
   { path: 'product/:id', component: ProductComponent },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled'
-})],
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
