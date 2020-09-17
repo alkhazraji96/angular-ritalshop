@@ -6,7 +6,7 @@
     "npm": "6.14.7"
   },
   "scripts": {
-    "start:heroku": "node dist/ritalshopV2/server",
+    "start:heroku": "node /dist/ritalshopV2/server",
     "heroku-postbuild": "npm run build:ssr",
     "ng": "ng",
     "start": "ng serve",
